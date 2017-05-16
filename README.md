@@ -1,5 +1,6 @@
 # Kickstarter stats
 A Django app to show the stats of Kickstarter projects
+Project live at https://kickstarter.prat.io
 
 ### Running with Docker
 After installing docker, go to the project directory 
