@@ -5,7 +5,7 @@ from kickstarter.models import *
 
 class ProjectsFilter(django_filters.FilterSet):
     """
-    Create a query set of activations with plan,type,channel,status,owner etc
+    Queryset of projects
     """
 
     class Meta:
@@ -18,7 +18,7 @@ class ProjectsFilter(django_filters.FilterSet):
 
 class CategoryStatusCountFilter(django_filters.FilterSet):
     """
-    Create a query set of Project count by Category and status
+    Queryset of projects by category and status
     """
 
     class Meta:
@@ -31,7 +31,7 @@ class CategoryStatusCountFilter(django_filters.FilterSet):
 
 class SubCategoryStatusCountFilter(django_filters.FilterSet):
     """
-    Create a query set of Project count by Category and status
+    Queryset of projects by sub category and status count
     """
 
     class Meta:
@@ -44,7 +44,7 @@ class SubCategoryStatusCountFilter(django_filters.FilterSet):
 
 class CountryStatusCountFilter(django_filters.FilterSet):
     """
-    Create a query set of Project count by Category and status
+    Queryset of projects by country and status
     """
 
     class Meta:
@@ -54,18 +54,10 @@ class CountryStatusCountFilter(django_filters.FilterSet):
         model = CountryStatusCount
         fields = ['country']
 
-    @property
-    def count(self):
-        """
-        Count all activations
-        """
-        queryset = super(CategoryStatusCountFilter, self).qs
-        return queryset
-
 
 class MonthStatusCountFilter(django_filters.FilterSet):
     """
-    Create a query set of Project count by Category and status
+    Queryset of projects by month and statys
     """
 
     class Meta:
@@ -78,7 +70,7 @@ class MonthStatusCountFilter(django_filters.FilterSet):
 
 class CategoryStatusPercentFilter(django_filters.FilterSet):
     """
-    Create a query set of Project count by Category and status
+    Queryset of projects by category and status percent
     """
 
     class Meta:
@@ -91,7 +83,7 @@ class CategoryStatusPercentFilter(django_filters.FilterSet):
 
 class SubCategoryStatusPercentFilter(django_filters.FilterSet):
     """
-    Create a query set of Project count by Category and status
+    Queryset of projects by sub-category and status percent
     """
 
     class Meta:
@@ -104,7 +96,7 @@ class SubCategoryStatusPercentFilter(django_filters.FilterSet):
 
 class CountryStatusPercentFilter(django_filters.FilterSet):
     """
-    Create a query set of Project count by Category and status
+    Queryset of projects by country and status percent
     """
 
     class Meta:
@@ -117,7 +109,7 @@ class CountryStatusPercentFilter(django_filters.FilterSet):
 
 class MonthStatusPercentFilter(django_filters.FilterSet):
     """
-    Create a query set of Project count by Category and status
+    Queryset of projects by month and status percent
     """
 
     class Meta:
