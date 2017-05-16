@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+    <div class="container">
+        <div class="col-md-12">
+            <h4 class="text-muted">Projects by category</h4>
+            <form action="" method="get">
+                {{ filter.form.as_p }}
+                <input type="submit"/>
+                <p><a href='{{ request.path }}'>Clear</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for item in filter.qs %}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="background: mintcream;">{{ item.category }}</div>
+                </div>
+                <canvas id="{{ item.category }}"></canvas>
+            </div>
+            <script>
+                //Create the dataset to plot the chart
+                var chartData = {
+                    labels: ['canceled', 'live', 'successful', 'suspended', 'failed'],
+                    datasets: [{
+                        fill: true,
+                        data: ["{{ item.canceled }}", "{{ item.live }}", "{{ item.successful }}", "{{ item.suspended }}", "{{ item.failed }}"],
+                        label: ['canceled', 'live', 'successful', 'suspended', 'failed'],
+                        backgroundColor: ["#FF6384", "#36A2EB", "#CDCE56", "#FFCE96", "#FFCE26"],
+                        spanGaps: false,
+                        showTooltips: true
+                    }]
+                };
+
+                var ctx = document.getElementById("{{ item.category.strip|safe }}").getContext("2d");
+                var myChart = new Chart(ctx, {
+                    type: "doughnut",
+                    data: chartData,
+                    options: {
+                        pieceLabel: {
+                            // mode 'label', 'value' or 'percentage', default is 'percentage'
+                            mode: 'percentage',
+                        }
+                    }
+                });
+            </script>
+
+        {% endfor %}
+    </div>
+
+
+{% endblock content %}
